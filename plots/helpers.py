@@ -96,6 +96,7 @@ my_labels = {
     'QCD': 'QCD',
     'pseudodata': 'Pseudo-data',
     'uncertainty': 'Uncertainty',
+    'data' : 'Data',
 }
 
 data_err_opts = {
