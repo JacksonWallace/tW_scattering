@@ -31,12 +31,21 @@ def saveFig( fig, ax, rax, path, name, scale='linear', shape=False, y_max=-1 ):
 
     handles, labels = ax.get_legend_handles_labels()
     new_labels = []
+    WHcount = 0
     for handle, label in zip(handles, labels):
         #print (handle, label)
         try:
-            new_labels.append(my_labels[label])
-            if not label=='pseudodata':
-                handle.set_color(colors[label])
+            #new_labels.append(my_labels[label])
+            
+            if WHcount>0 and label=='WH':
+                new_labels.append('WH (1000,0)')
+                handle.set_color('#000000')
+            else:
+                new_labels.append(my_labels[label])
+                if not label=='pseudodata':
+                    handle.set_color(colors[label])
+            if label=='WH':
+                WHcount+=1
         except:
             pass
 
@@ -47,8 +56,8 @@ def saveFig( fig, ax, rax, path, name, scale='linear', shape=False, y_max=-1 ):
 
     ax.legend(title='',ncol=2,handles=handles, labels=new_labels, frameon=False)
 
-    fig.text(0., 0.995, '$\\bf{CMS}$', fontsize=20,  horizontalalignment='left', verticalalignment='bottom', transform=ax.transAxes )
-    fig.text(0.15, 1., '$\\it{Simulation}$', fontsize=14, horizontalalignment='left', verticalalignment='bottom', transform=ax.transAxes )
+    fig.text(0.15, 0.995, '$\\bf{CMS}$', fontsize=20,  horizontalalignment='left', verticalalignment='bottom', transform=ax.transAxes )
+    fig.text(0.30, 1., '$\\it{Simulation}$', fontsize=14, horizontalalignment='left', verticalalignment='bottom', transform=ax.transAxes )
     fig.text(0.8, 1., '13 TeV', fontsize=14, horizontalalignment='left', verticalalignment='bottom', transform=ax.transAxes )
 
     fig.savefig(os.path.join(outdir, "{}.pdf".format(name)))
@@ -68,6 +77,9 @@ colors = {
     'diboson': '#525B76',
     'DY': '#6A4C93',
     'mC750_l1': '#FF595E',
+    'WH': '#FF595E',
+    '750_1_scan': '#FF595E',
+    '1000_1_scan': '#000000',
     'LL': '#1982C4',
     'ZNuNu': '#FFCA3A',
     'QCD': '#8AC926',
@@ -91,6 +103,9 @@ my_labels = {
     'DY': 'Drell-Yan',
     'diboson': 'VV/VVV',
     'mC750_l1': 'WH (750,1)',
+    'WH': 'WH (750,0)',
+    '750_1_scan': 'WH (750,1) FS',
+    '1000_1_scan': 'WH (1000,1) FS',
     'LL': 'Lost Lepton',
     'ZNuNu': r'$Z \rightarrow inv$',
     'QCD': 'QCD',
