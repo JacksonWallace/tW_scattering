@@ -2,7 +2,7 @@ import os
 import matplotlib.pyplot as plt
 from Tools.helpers import finalizePlotDir
 
-def saveFig( fig, ax, rax, path, name, scale='linear', shape=False, y_max=-1 ):
+def saveFig( fig, ax, rax, path, name, scale='linear', shape=False, y_max=-1, preliminary='Simulation', lumi=137 ):
     outdir = os.path.join(path,scale)
     finalizePlotDir(outdir)
     ax.set_yscale(scale)
@@ -52,12 +52,12 @@ def saveFig( fig, ax, rax, path, name, scale='linear', shape=False, y_max=-1 ):
     if rax:
         plt.subplots_adjust(hspace=0)
         rax.set_ylabel('Obs./Pred.')
-        rax.set_ylim(0.5,1.5)
+        rax.set_ylim(0.0,2.0)
 
     ax.legend(title='',ncol=2,handles=handles, labels=new_labels, frameon=False)
-
-    fig.text(0.15, 0.995, '$\\bf{CMS}$', fontsize=20,  horizontalalignment='left', verticalalignment='bottom', transform=ax.transAxes )
-    fig.text(0.30, 1., '$\\it{Simulation}$', fontsize=14, horizontalalignment='left', verticalalignment='bottom', transform=ax.transAxes )
+    fig.text(0., 0.995, '$\\bf{CMS}$', fontsize=20,  horizontalalignment='left', verticalalignment='bottom', transform=ax.transAxes )
+    fig.text(0.15, 1., '$\\it{%s}$'%preliminary, fontsize=14, horizontalalignment='left', verticalalignment='bottom', transform=ax.transAxes )
+    fig.text(0.65, 1., '$%s fb^{-1}$'%lumi, fontsize=14, horizontalalignment='left', verticalalignment='bottom', transform=ax.transAxes )
     fig.text(0.8, 1., '13 TeV', fontsize=14, horizontalalignment='left', verticalalignment='bottom', transform=ax.transAxes )
 
     fig.savefig(os.path.join(outdir, "{}.pdf".format(name)))
@@ -76,13 +76,20 @@ colors = {
     'wjets': '#6A4C93',
     'diboson': '#525B76',
     'DY': '#6A4C93',
+
     'mC750_l1': '#FF595E',
-    'WH': '#FF595E',
-    '750_1_scan': '#FF595E',
-    '1000_1_scan': '#000000',
+    '1000_1_scan': '#FF595E',
     'LL': '#1982C4',
-    'ZNuNu': '#FFCA3A',
-    'QCD': '#8AC926',
+    'ZNuNu': '#6A0136',
+    'QCD': '#989C94',
+    'WW': '#FF5714',
+    'ttW': '#FFCA3A',
+    'ST': '#8AC926',
+    'WJets': '#1982C4',
+    'TTJets': '#F76F8E',
+    'TChiWH_1000_1': '#FF595E',
+    'TChiWH_800_1': '#000000',
+
 }
 '''
 other colors (sets from coolers.com):
@@ -102,13 +109,21 @@ my_labels = {
     'wjets': 'W+jets',
     'DY': 'Drell-Yan',
     'diboson': 'VV/VVV',
-    'mC750_l1': 'WH (750,1)',
-    'WH': 'WH (750,0)',
-    '750_1_scan': 'WH (750,1) FS',
+
     '1000_1_scan': 'WH (1000,1) FS',
+    'TChiWH_1000_1': 'WH (1000,1) FS',
+    'TChiWH_800_1': 'WH (1000,1) FS',
     'LL': 'Lost Lepton',
     'ZNuNu': r'$Z \rightarrow inv$',
     'QCD': 'QCD',
+    'WW': 'WW',
+    'ttW': r'$t\bar{t}$W+jets',
+    'ST': 'ST',
+    'WJets': 'W+jets',
+    'TTJets': r'$t\bar{t}$+jets',
+    'mC750_l1': r'WH',
+
+    'Data': 'Observed',
     'pseudodata': 'Pseudo-data',
     'uncertainty': 'Uncertainty',
     'data' : 'Data',

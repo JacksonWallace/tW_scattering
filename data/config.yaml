@@ -1,4 +1,6 @@
 caches:
+  WH: WH
+  WH_small: WH_small
   base: $TWHOME/caches/
   diLepOS: diLepOS
   diLepOS_small: diLepOS_small
@@ -16,8 +18,8 @@ caches:
 lumi: 60
 meta:
   localNano: /hadoop/cms/store/user/dspitzba/nanoAOD/
-  localSkim: /hadoop/cms/store/user/dspitzba/nanoAOD/ttw_samples/
+  localSkim: /hadoop/cms/store/user/$USER/WH_hadronic/
   plots: /home/users/$USER/public_html/tW_scattering/
-  version: 0.1.12
+  version: MPBv1
 signalSelection:
   met: 50

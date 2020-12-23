@@ -18,8 +18,10 @@ try:
 except ImportError:
     from yaml import Loader, Dumper
 
+import os
 
-with open(os.path.expandvars('$TWHOME/data/objects.yaml')) as f: # need to fix this with absolute paths for DASK
+
+with open(os.path.expandvars('$TWHOME/data/objects.yaml')) as f:
     obj_def = load(f, Loader=Loader)
 
 class Collections:
