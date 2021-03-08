@@ -111,7 +111,8 @@ RET=$?
 mv tree.root ${OUTPUTNAME}_${IFILE}.root
 
 # Dump contents of log file into stdout
-echo -e "\n--- begin xrootd log ---\n" cat "$XRD_LOGFILE"
+echo -e "\n--- begin xrootd log ---\n"
+cat "$XRD_LOGFILE"
 echo -e "\n--- end xrootd log —\n"
 
 # Rigorous sweeproot which checks ALL branches for ALL events.
